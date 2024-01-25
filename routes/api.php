@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\pudController;
+use App\Http\Controllers\pubController;
 
 
 /*
@@ -20,15 +20,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get("/drinks", [ pudController::class, "getDrinks"]);
+Route::get("/drinks", [ pubController::class, "getDrinks"]);
 
-Route::get("/oneDrink/{drinkName}", [ pudController::class, "getOneDrink"]);
+Route::get("/oneDrink/{drinkName}", [ pubController::class, "getOneDrink"]);
 
-Route::get("/likeDrink/{likeText}", [ pudController::class, "getLikeDrinks"]);
+Route::get("/likeDrink/{likeText}", [ pubController::class, "getLikeDrinks"]);
 
-Route::get("/between/{value1}/{value2}", [ pudController::class, "getLess30"]);
+Route::get("/between/{value1}/{value2}", [ pubController::class, "getLess30"]);
 
-Route::get("/adddrink", [ pudController::class, "addDrink"]);
-Route::get("/drinkwtype",[pudController::class, "getDrinkWithType"]);
-Route::get("/left",[pudController::class, "getLeftDrink"]);
-Route::get("/right",[pudController::class, "getRightDrink"]);
+Route::get("/adddrink", [ pubController::class, "addDrink"]);
+Route::get("/drinkwtype",[pubController::class, "getDrinkWithType"]);
+Route::get("/left",[pubController::class, "getLeftDrink"]);
+Route::get("/right",[pubController::class, "getRightDrink"]);
+Route::get("/all",[pubController::class, "getAllData"]);
+Route::get("/lastId",[pubController::class, "getLastId"]);
+Route::get("/deleteDrink",[pubController::class, "deleteDrink"]);

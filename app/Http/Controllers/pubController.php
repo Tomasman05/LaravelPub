@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class pudController extends Controller
+class pubController extends Controller
 {
     public function getDrinks(){
         $drinks = DB::table( "drinks" )->get();
@@ -50,7 +50,7 @@ class pudController extends Controller
             select(
                 "drinks.drink as Ital",
                 "drinks.amount as Mennyiség",
-                "types.type as Típus"
+                "types.type as Típus",
             )->join(
                 "types","drinks.type_id","=","types.id"
             )->get();
@@ -77,5 +77,32 @@ class pudController extends Controller
             "types","drinks.type_id","=","types.id"
         )->get();
         return $drinks;
+    }
+    public function getAllData(){
+        $drinks = DB::table("drinks")->
+            select(
+                "drinks.drink as Ital",
+                "drinks.amount as Mennyiség",
+                "types.type as Típus",
+                "packages.package as Kiszerelés"
+            )->join(
+                "types","drinks.type_id","=","types.id"
+            )->join(
+                "packages","drinks.package_id","=","packages.id"
+            )
+            ->get();
+        return $drinks;
+    }
+    public function getLastId(){
+        $id = DB::table("types")->insertGetId([
+            "type"=>"Zselés"  
+        ]);
+        return $id;
+    }
+    public function deleteDrink(){
+        DB::table("types")->where("type","Rövid")->delete();
+        DB::table("types")->where("type","Üdítő")->delete();
+        DB::table("types")->where("type","Egyéb")->delete();
+        DB::table("types")->where("type","Zselés")->delete();
     }
 }
