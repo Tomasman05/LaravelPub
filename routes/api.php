@@ -30,3 +30,5 @@ Route::get("/between/{value1}/{value2}", [ pudController::class, "getLess30"]);
 
 Route::get("/adddrink", [ pudController::class, "addDrink"]);
 Route::get("/drinkwtype",[pudController::class, "getDrinkWithType"]);
+Route::get("/left",[pudController::class, "getLeftDrink"]);
+Route::get("/right",[pudController::class, "getRightDrink"]);

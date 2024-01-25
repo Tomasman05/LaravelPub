@@ -56,4 +56,26 @@ class pudController extends Controller
             )->get();
         return $drinks;
     }
+    public function getLeftDrink(){
+        $drinks = DB::table("drinks")->
+        select(
+            "drinks.drink as Ital",
+            "drinks.amount as Mennyiség",
+            "types.type as Típus"
+        )->leftjoin(
+            "types","drinks.type_id","=","types.id"
+        )->get();
+        return $drinks;
+    }
+    public function getRightDrink(){
+        $drinks = DB::table("drinks")->
+        select(
+            "drinks.drink as Ital",
+            "drinks.amount as Mennyiség",
+            "types.type as Típus"
+        )->rightjoin(
+            "types","drinks.type_id","=","types.id"
+        )->get();
+        return $drinks;
+    }
 }
